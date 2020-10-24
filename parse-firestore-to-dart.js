@@ -33,7 +33,7 @@ async function buildDartScriptForDocumentFromData({docData, firestorePath, justS
     let finalJSON = JSON.stringify(final_object, null, 8)
     // console.log(finalJSON)
     _.forIn(replace_mapping, (value, key) => {
-        finalJSON = finalJSON.replace( new RegExp(`"\$\$replace_key_${key}\$\$"`, 'g'), value);
+        finalJSON = finalJSON.replace( new RegExp(`"\\$\\$replace_key_${key}\\$\\$"`, 'g'), value);
     })
     dartScript = await Promise.all(tasks)
     const dartSetLine = `await ${mockInstance}.doc('${firestorePath}').set(${finalJSON});`
